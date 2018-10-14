@@ -49,6 +49,7 @@ export class RouteProtect {
     this.to = to;
 
     const { access, redirect } = this._hasAccessToRoute(to);
-    access ? next() : next({ name: redirect });
+    access && redirect  ? next() : next({ name: redirect });
+	access && !redirect ? next(false);
   }
 }
