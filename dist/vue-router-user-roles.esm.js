@@ -61,7 +61,7 @@ RouteProtect.prototype.resolve = function resolve (to, from, next) {
   var ref = this._hasAccessToRoute(to);
     var access = ref.access;
     var redirect = ref.redirect;
-  access ? next() : next({ name: redirect });
+  access ? next() : redirect ? next({ name: redirect }) : next(false);
   };
 
 function plugin (Vue$$1, opts) {
